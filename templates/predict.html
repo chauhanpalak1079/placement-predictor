@@ -1,34 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Enter Your Stats</h2>
+    <h2>Data Input</h2>
+    <p style="margin-bottom: 32px;">Enter the candidate's academic and performance metrics below.</p>
+
     <form action="/result" method="post">
-        
-        <div class="input-group">
-            <label>CGPA (Out of 10.0)</label>
-            <input type="number" step="0.1" name="cgpa" placeholder="e.g. 8.5" required>
+        <div class="input-grid">
+            <div class="input-group">
+                <label>CGPA</label>
+                <input type="number" step="0.1" name="cgpa" placeholder="Scale of 10.0" required>
+            </div>
+
+            <div class="input-group">
+                <label>Internships</label>
+                <input type="number" name="internships" placeholder="Total count" required>
+            </div>
+
+            <div class="input-group">
+                <label>Projects</label>
+                <input type="number" name="projects" placeholder="Total count" required>
+            </div>
+
+            <div class="input-group">
+                <label>Aptitude Score</label>
+                <input type="number" name="aptitude" placeholder="Scale of 100" required>
+            </div>
+
+            <div class="input-group">
+                <label>Soft Skills</label>
+                <input type="number" name="softskills" placeholder="Scale of 10" required>
+            </div>
         </div>
 
-        <div class="input-group">
-            <label>Number of Internships</label>
-            <input type="number" name="internships" placeholder="e.g. 2" required>
-        </div>
-
-        <div class="input-group">
-            <label>Projects Completed</label>
-            <input type="number" name="projects" placeholder="e.g. 4" required>
-        </div>
-
-        <div class="input-group">
-            <label>Aptitude Score (Out of 100)</label>
-            <input type="number" name="aptitude" placeholder="e.g. 85" required>
-        </div>
-
-        <div class="input-group">
-            <label>Soft Skills Rating (Out of 10)</label>
-            <input type="number" name="softskills" placeholder="e.g. 8" required>
-        </div>
-
-        <button type="submit" class="btn">Analyze Profile 🚀</button>
+        <button type="submit" class="btn">Process Data</button>
     </form>
 {% endblock %}
