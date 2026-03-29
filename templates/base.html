@@ -93,12 +93,19 @@
             color: var(--text-primary);
         }
 
+        /* Active link state */
+        .nav-links a.active {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
         /* Main Container */
         .container {
             width: 100%;
             max-width: 900px;
             padding: 40px;
             margin-top: 4vh;
+            margin-bottom: 60px; /* Space for footer */
             background: var(--glass-bg);
             backdrop-filter: blur(40px);
             -webkit-backdrop-filter: blur(40px);
@@ -147,8 +154,8 @@
         input[type="number"] {
             width: 100%;
             padding: 16px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.08); /* Increased visibility */
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Brighter border */
             border-radius: 12px;
             color: var(--text-primary);
             font-family: inherit;
@@ -158,8 +165,9 @@
         }
 
         input[type="number"]:focus {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(142, 45, 226, 0.6); /* Purple glow */
+            box-shadow: 0 0 0 3px rgba(142, 45, 226, 0.2);
         }
 
         /* Buttons */
@@ -186,19 +194,30 @@
         }
 
         .btn.secondary {
-            background: transparent;
+            background: rgba(255, 255, 255, 0.05); /* Slight tint so it's visible */
             color: var(--text-primary);
-            border: 1px solid var(--glass-border);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .btn.secondary:hover {
-            background: var(--accent-hover);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .action-group {
             display: flex;
             gap: 16px;
             margin-top: 32px;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: auto;
+            padding: 24px;
+            text-align: center;
+            width: 100%;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.8rem;
+            z-index: 10;
         }
 
         /* Responsive Design */
@@ -228,13 +247,17 @@
     <nav>
         <a href="/" class="logo">Placement AI</a>
         <div class="nav-links">
-            <a href="/predict">Predict</a>
-            <a href="/about">About</a>
+            <a href="/predict" class="{% if request.path == '/predict' %}active{% endif %}">Predict</a>
+            <a href="/about" class="{% if request.path == '/about' %}active{% endif %}">About</a>
         </div>
     </nav>
 
     <div class="container">
         {% block content %}{% endblock %}
     </div>
+
+    <footer>
+        &copy; 2026 Placement AI. Developed by Palak & Akshada.
+    </footer>
 </body>
 </html>

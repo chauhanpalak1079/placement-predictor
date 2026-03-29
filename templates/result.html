@@ -1,29 +1,42 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% set is_positive = 'High' in prediction %}
+    
     <style>
         .result-metric {
             font-size: 4rem;
-            font-weight: 300;
-            color: var(--text-primary);
+            font-weight: 500;
             margin: 24px 0 8px 0;
             letter-spacing: -0.05em;
+            color: var(--text-primary);
         }
+        
+        .theme-positive-text { color: #4ade80; }
+        .theme-negative-text { color: #f87171; }
+        
+        .theme-positive-border { border-left: 3px solid #4ade80; }
+        .theme-negative-border { border-left: 3px solid #f87171; }
+
         .advice-box {
             margin-top: 32px;
             padding: 24px;
             background: rgba(255, 255, 255, 0.02);
-            border-left: 3px solid rgba(255, 255, 255, 0.5);
             border-radius: 0 12px 12px 0;
         }
     </style>
 
     <p style="text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem;">Analysis Complete</p>
     
-    <div class="result-metric">{{ probability }}%</div>
-    <h2>{{ prediction }}</h2>
+    <div class="result-metric">
+        {{ probability }}%
+    </div>
+    
+    <h2 class="{% if is_positive %}theme-positive-text{% else %}theme-negative-text{% endif %}">
+        {{ prediction }}
+    </h2>
 
-    <div class="advice-box">
+    <div class="advice-box {% if is_positive %}theme-positive-border{% else %}theme-negative-border{% endif %}">
         <label>System Recommendation</label>
         <p style="margin-top: 8px; color: var(--text-primary);">{{ advice }}</p>
     </div>
